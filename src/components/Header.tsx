@@ -1,17 +1,37 @@
 import { useLocation } from 'preact-iso';
+import { useState } from 'preact/hooks';
+
+import "./components.less"
 
 export function Header() {
 	const { url } = useLocation();
 
+	let [isHamburger, setIsHamburger] = useState(false);
+
+	const toggleMenu = () => {
+		setIsHamburger(!setIsHamburger);
+	}
+
 	return (
 		<header>
 			<nav>
-				<a href="/" class={url == '/' && 'active'}>
-					Home
-				</a>
-				<a href="/404" class={url == '/404' && 'active'}>
-					404
-				</a>
+				<div class={`topnav ${isHamburger ? 'responsive' : ''}`} id="topNav">
+					<div class="inner-topnav">
+						<a href="/" class={url == '/' && 'active'}>
+							Home
+						</a>
+						<a href="/explore" class={url == '/explore' && 'active'}>
+							Explore
+						</a>
+						<a href="/account" class={url == '/account' && 'active'}>
+							Account
+						</a>
+						
+						<a href="javascript:void(0);" class="icon" onClick={toggleMenu}>
+							&#9776;
+						</a>
+					</div>
+				</div>
 			</nav>
 		</header>
 	);

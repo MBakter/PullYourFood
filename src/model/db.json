@@ -1,0 +1,61 @@
+{
+  "users": [
+    {
+      "id": "f83f",
+      "username": "default",
+      "password": "admin1234",
+      "email": "barna.meszaros02@gmail.com",
+      "numOfRecipes": 0
+    }
+  ],
+  "recipes": [
+    {
+      "name": "Chicken Rice Bowl",
+      "creator": "John Doe",
+      "category": "Main Dish",
+      "time": "15-30min",
+      "ingredients": "chicken, rice, vegetables, spices",
+      "id": "0bd1",
+      "kuki": "asdasd"
+    },
+    {
+      "name": "Creamy Vegetable Soup",
+      "creator": "Jane Smith",
+      "category": "Soup",
+      "time": "30-60min",
+      "ingredients": "potatoes, carrots, onion, cream, salt, pepper",
+      "id": "5c9b"
+    },
+    {
+      "name": "Chocolate Cake",
+      "creator": "Chef Alex",
+      "category": "Dessert",
+      "time": "15-30min",
+      "ingredients": "flour, eggs, sugar, cocoa powder, butter",
+      "id": "8993"
+    },
+    {
+      "name": "Vanilla Hot Chocolate",
+      "creator": "Maria Rossi",
+      "category": "Drink",
+      "time": "5-15min",
+      "ingredients": "milk, cocoa powder, sugar, vanilla",
+      "id": "c59a"
+    },
+    {
+      "id": "91f2",
+      "name": "NAGYKUKI",
+      "creator": null,
+      "category": "Dessert",
+      "time": "1h+",
+      "ingredients": [],
+      "rating": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}
