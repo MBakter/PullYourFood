@@ -1,0 +1,76 @@
+/*________STYLES FOR UPLOAD RECIPE________*/
+
+@import "./../../model/lib.less";
+
+.login {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 10px;
+    color: @text-color-dark;
+
+    h1 {
+        font-size: 3rem;
+        text-shadow: 4px 4px 6px darken(@background-color-dark, 2%);
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        input,
+        select {
+            margin: 0 auto;
+            width: 70%;
+            border: none;
+            background-color: @input-color;
+            color: @text-color-dark;
+            font-size: 1.3rem;
+            border-radius: 10px;
+            padding: 10px;
+            outline: none;
+
+            &::placeholder {
+                color: fade(@text-color-dark, 50%);
+            }
+        }
+    }
+
+
+    button {
+        border: none;
+        padding: 0.75rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        background-color: @button-color;
+        color: @text-color-dark;
+        transition: all 0.6s;
+
+        &:hover {
+            color: @text-color-dark;
+            color: lighten(@text-color-dark, 40%);
+            border-color: fade(@text-color-dark, 50%);
+            background-color: lighten(@input-color, 40%);
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 1rem;
+
+        input {
+            width: 90%;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        button[type="button"],
+        button[type="submit"] {
+            font-size: 0.875rem;
+        }
+    }
+}

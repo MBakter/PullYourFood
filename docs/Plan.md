@@ -1,7 +1,15 @@
 # PullYourFood plans
 
 Csillagos elemek opcionálisak alfa verzióban
-  
+
+## Notes
+
+### TODO
+
+- sessionStorage-ba eltárolni a currentUsert és mindig parsolni azért nem jó, mert ha frissül (pl.: feltölt egy receptet) akkor csak logout és újra login után frissül az adat
+  - Ezért áttérek contextes megoldásra, a currentUsert eltárolom index fileban
+  - Valamilyen hook kell amit meg tudok hívni explicit, hogy mikor szeretném, hogy kérje le a currentUser adatát újra.
+
 ## Pages
 
 ### Explore

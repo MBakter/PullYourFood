@@ -24,7 +24,7 @@ export function Header() {
 							Explore
 						</a>
 						<a href="/account" class={url == '/account' && 'active'}>
-							Account
+							{ sessionStorage.getItem("currentUser") === null ? "Login" : "Account"}
 						</a>
 						
 						<a href="javascript:void(0);" class="icon" onClick={toggleMenu}>

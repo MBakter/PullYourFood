@@ -4,55 +4,133 @@
       "id": "f83f",
       "username": "default",
       "password": "admin1234",
-      "email": "barna.meszaros02@gmail.com",
-      "numOfRecipes": 0
+      "email": "admin",
+      "numOfRecipes": 2
+    },
+    {
+      "id": "5ac3",
+      "username": "Bakter",
+      "password": "admin1234",
+      "email": "bakter@gmail.com",
+      "numOfRecipes": 1
+    },
+    {
+      "id": "9f7b",
+      "username": "Lutan",
+      "password": "admin1234",
+      "email": "lutanfyah@gmail.com",
+      "numOfRecipes": 2
     }
   ],
   "recipes": [
     {
-      "name": "Chicken Rice Bowl",
-      "creator": "John Doe",
-      "category": "Main Dish",
-      "time": "15-30min",
-      "ingredients": "chicken, rice, vegetables, spices",
-      "id": "0bd1",
-      "kuki": "asdasd"
-    },
-    {
-      "name": "Creamy Vegetable Soup",
-      "creator": "Jane Smith",
-      "category": "Soup",
+      "id": "e10c",
+      "name": "Bolognai spaghetti",
+      "creator": "default",
+      "category": "Dish",
       "time": "30-60min",
-      "ingredients": "potatoes, carrots, onion, cream, salt, pepper",
-      "id": "5c9b"
-    },
-    {
-      "name": "Chocolate Cake",
-      "creator": "Chef Alex",
-      "category": "Dessert",
-      "time": "15-30min",
-      "ingredients": "flour, eggs, sugar, cocoa powder, butter",
-      "id": "8993"
-    },
-    {
-      "name": "Vanilla Hot Chocolate",
-      "creator": "Maria Rossi",
-      "category": "Drink",
-      "time": "5-15min",
-      "ingredients": "milk, cocoa powder, sugar, vanilla",
-      "id": "c59a"
-    },
-    {
-      "id": "91f2",
-      "name": "NAGYKUKI",
-      "creator": null,
-      "category": "Dessert",
-      "time": "1h+",
-      "ingredients": [],
+      "ingredients": [
+        "Paradicsomszósz",
+        "Spaghetti tészta",
+        "Darált hús",
+        "Sajt",
+        "Oregánó",
+        "Majoranna",
+        "Bazsalikom",
+        "Kakukkfű",
+        "Hagyma"
+      ],
       "rating": [
         0,
         0,
         0,
+        0,
+        1673
+      ]
+    },
+    {
+      "id": "6448",
+      "name": "Gyros",
+      "creator": "default",
+      "category": "Takeaway",
+      "time": "15-30min",
+      "ingredients": [
+        "Tortilla",
+        "Csirkehús",
+        "Tejföl",
+        "Kapor",
+        "Hagyma",
+        "Paradicsom",
+        "Káposzta",
+        "Saláta"
+      ],
+      "rating": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "af22",
+      "name": "Björnítő",
+      "creator": "Bakter",
+      "category": "Beverage",
+      "time": "5-15min",
+      "ingredients": [
+        "Stroh Rum",
+        "Barack pálinka",
+        "Baracklé",
+        "Barack szörp"
+      ],
+      "rating": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "5239",
+      "name": "Spliff",
+      "creator": "Lutan",
+      "category": "Dessert",
+      "time": "5-15min",
+      "ingredients": [
+        "Cali",
+        "OCB",
+        "Pepe light green"
+      ],
+      "rating": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "dc73",
+      "name": "Piazza",
+      "creator": "Lutan",
+      "category": "Takeaway",
+      "time": "15-30min",
+      "ingredients": [
+        "Auchenes pizzalap",
+        "ALDIs combsonkalap",
+        "magyar trappista",
+        "házi paradicsmszósz",
+        "só",
+        "bors",
+        "oregánó",
+        "bazsalikom"
+      ],
+      "rating": [
+        0,
+        0,
+        1,
         0,
         0
       ]

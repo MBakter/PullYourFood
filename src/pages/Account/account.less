@@ -1,0 +1,59 @@
+@import "./../../model/lib.less";
+
+.account {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background-color: lighten(@background-color-dark, 10%);
+    color: @text-color-dark;
+
+    .line {
+
+        width: 80%;
+        height: 1px;
+        background-color: fade(@text-color-dark, 30%);
+        margin: 1.5rem auto;
+        margin-top: 3rem;
+        position: relative;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+        color: @header-color;
+    }
+
+    .logout button {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        border: none;
+        background-color: @button-color;
+        color: @text-color-dark;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: lighten(@button-color, 15%);
+            color: @text-color-light;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 1rem;
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+
+        button {
+            font-size: 0.875rem;
+        }
+    }
+}

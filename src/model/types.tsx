@@ -7,6 +7,13 @@ export type User = {
     registrationDate: Date
 }
 
+export type Creator = {
+    username: string,
+    email: string,
+    numOfRecipes: number,
+    registrationDate: Date
+}
+
 export enum RecipeCategory {
     DISH = "Dish",
     TAKEAWAY = "Takeaway",
@@ -25,7 +32,7 @@ export enum RecipeTime {
 
 export type Recipe = {
     name: string,
-    creator: User,
+    creator: string, //email of user
     category: RecipeCategory,
     time: RecipeTime,
     ingredients: string[],

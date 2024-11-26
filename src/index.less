@@ -1,10 +1,20 @@
-:root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
+@import "./model/lib.less";
 
-	color: #222;
-	background-color: #ffffff;
+.faculty-glyphic-regular {
+	font-family: "Faculty Glyphic", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+  }
+
+  
+:root {
+	font-family: "Faculty Glyphic", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 1.5;
+
+	color: @text-color-light;
+	background-color: @background-color-light;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -40,7 +50,7 @@ main {
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		color: #ccc;
-		background-color: #1a1a1a;
+		color: @text-color-dark;
+		background-color: @background-color-dark;
 	}
 }

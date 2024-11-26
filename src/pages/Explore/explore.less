@@ -1,0 +1,32 @@
+@import "./../../model/lib.less";
+
+.explore {
+
+    text-align: center;
+    padding: 50px;
+
+    h1 {
+        font-size: 3rem;
+        text-shadow: 4px 4px 6px darken(@background-color-dark, 5%);
+    }
+
+    .recipes ul {
+        list-style-type: none;
+    }
+    
+    .recipe-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 16px;
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1200px;
+
+        .recipe-container li {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
