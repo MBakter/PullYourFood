@@ -1,77 +1,84 @@
 import { useEffect, useState } from "preact/hooks";
-import { Login } from "../Login/login";
-import { UploadRecipe } from "../../components/UploadRecipe";
-import { User } from "../../model/types";
+import { Login } from "./login";
+import { UploadRecipe } from "./UploadRecipe";
+import { Profile, User } from "../../model/types";
 import "./account.less"
+import { YourAccount } from "./yourAccount";
+import { useLocation } from "preact-iso";
 
 export function Account() {
 
 	let [isSuccessful, setIsSuccessful] = useState(false);
 	const currentUserSession = sessionStorage.getItem("currentUser");
-	const [showPassword, setShowPassword] = useState(false);
 
-	const handleLogout = () => {
-		sessionStorage.removeItem("currentUser");
-		window.location.reload();
+	let [profile, setProfile] = useState<Profile>({
+		username: JSON.parse(currentUserSession).username,
+		email: JSON.parse(currentUserSession).email,
+		numOfRecipes: JSON.parse(currentUserSession).numOfRecipes
+	});
+
+	const { url } = useLocation();
+	const queryParams = new URLSearchParams(url.split('?')[1]);
+	const username: string = queryParams.get('username') || 'current';
+
+	const searchByName = async (): Promise<Profile> => {
+		let foundProfile: Profile = null;
+		await fetch("http://localhost:8000/users")
+			.then(response => response.json())
+			.then((users: User[]) => {
+				const user: User = users.find(
+					u => u.username === username
+				);
+				console.log(user);
+				if (user) {
+					foundProfile = {
+						username: user.username,
+						email: user.email,
+						numOfRecipes: user.numOfRecipes
+					}
+				}
+
+			});
+		return foundProfile;
 	}
+
+	const setProfileAsCurrent = async () => {
+
+		if (username === "current") {
+			console.log("Current is the URL");
+			setProfile({
+				username: JSON.parse(currentUserSession).username,
+				email: JSON.parse(currentUserSession).email,
+				numOfRecipes: JSON.parse(currentUserSession).numOfRecipes
+			})
+		}
+		else {
+			console.log("Searching profile");
+			const foundProfile = searchByName();
+			setProfile({
+				username: (await foundProfile).username,
+				email: (await foundProfile).email,
+				numOfRecipes: (await foundProfile).numOfRecipes
+			})
+			console.log("Found profile" + (await foundProfile).username);
+		}
+	}
+
+	useEffect(() => {
+		const fetchData = async () => {
+			await setProfileAsCurrent();
+		};
+		fetchData();
+	}, [url]);
 
 	return (
 		<div class="account-container">
 
-			{(currentUserSession !== null) &&
-				<div class="account">
-					<div class="name-header">
-						<span class="material-symbols-outlined">
-							account_circle
-						</span>
-						<div class="name">
-							<h1 id="name" > {JSON.parse(currentUserSession).username} </h1>
-
-						</div>
-
-					</div>
-
-					<div class="data-container">
-						<div class="data">
-							<span class="material-symbols-outlined">
-								alternate_email
-							</span>
-							<p id="email"> {JSON.parse(currentUserSession).email} </p>
-						</div>
-
-						<div class="data">
-							<span class="material-symbols-outlined">
-								key
-							</span>
-
-							<div class="password-container">
-								{showPassword &&
-									<p id="password" >
-										{JSON.parse(currentUserSession).password}
-									</p>
-								}
-								<button onClick={() => setShowPassword(!showPassword)} class={showPassword ? "shown" : "hidden"}>
-									{showPassword ? "Hide" : "Show"}
-								</button>
-							</div>
-
-
-						</div>
-
-						<p id="recipeNum"> You uploaded {JSON.parse(currentUserSession).numOfRecipes} Recipe(s) </p>
-					</div>
-
-					<div class="logout">
-						<button onClick={() => handleLogout()}>Logout</button>
-					</div>
-
-					<div class="line"></div>
-
-					<UploadRecipe />
-				</div>
+			{(profile.email !== "anonymous") &&
+				<YourAccount profile={profile} password={(username === "current" || username === JSON.parse(currentUserSession).username) ? JSON.parse(currentUserSession).password : null} />
 			}
 
-			{(currentUserSession === null) &&
+			{(profile.email === "anonymous") &&
 				<Login></Login>
 			}
 

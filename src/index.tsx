@@ -21,16 +21,30 @@ export function App() {
 			.then((data: Recipe[]) => setRecipes(data));
 	}
 
-	useEffect(() => fetchData(), []); //<-- [] dependency. Megmondja melyik state changenél kell hívni (ha üres akkor csak initial rendernél)
+	const setupSessionStorage = () => {
+		if(!sessionStorage.getItem("currentUser"))
+			sessionStorage.setItem("currentUser", JSON.stringify({
+				username: "anonymous",
+				email: "anonymous",
+				password: "anonymous",
+				numOfRecipes: 0
+			}))
+	}
 
+	useEffect(() => fetchData(), []); //<-- [] dependency. Megmondja melyik state changenél kell hívni (ha üres akkor csak initial rendernél)
+	
+	useEffect(() => setupSessionStorage(), []);
+	
+	console.log(sessionStorage.getItem("currentUser"))
+	
 	return (
 		<LocationProvider>
 			<Header />
 			<main>
 				<Router>
-					<Route path="/" component={Home} recipes={recipes}/>
+					<Route path="/" component={Home}/>
 					<Route path="/explore" component={Explore} recipes={recipes} />
-					<Route path="/account" component={Account} />
+					<Route path="/account" component={Account} recipes={recipes} />
 					<Route default component={NotFound} />
 				</Router>
 			</main>

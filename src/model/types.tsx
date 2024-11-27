@@ -7,11 +7,10 @@ export type User = {
     registrationDate: Date
 }
 
-export type Creator = {
+export type Profile = {
     username: string,
     email: string,
-    numOfRecipes: number,
-    registrationDate: Date
+    numOfRecipes: number
 }
 
 export enum RecipeCategory {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { addUser } from "./../../model/dao"
+import { addUser } from "../../model/dao"
 import { User } from "../../model/types";
 
 import "./login.less"
@@ -22,7 +22,7 @@ export function Login() {
     let [password, setPassword] = useState("");
     let [email, setEmail] = useState("");
 
-    const [users, setUsers] = useState<User[]>([]);
+    /* const [users, setUsers] = useState<User[]>([]);
 
     const fetchData = () => {
         fetch("http://localhost:8000/users")
@@ -30,7 +30,7 @@ export function Login() {
             .then((data: User[]) => setUsers(data));
     }
 
-    useEffect(() => fetchData(), []);
+    useEffect(() => fetchData(), []); */
 
     const handleLogin = () => {
 
@@ -40,6 +40,12 @@ export function Login() {
                 const user: User = users.find(
                     u => u.email === email && u.password === password
                 );
+
+                if(email === "anonymous" || name === "current") {
+                    setIsError(true);
+                    setErrorMessage("Wrong username or password");
+                    return;
+                }
 
                 if (user) {
                     setIsError(false);
@@ -62,6 +68,13 @@ export function Login() {
                 const user: User = users.find(
                     u => u.email === email || u.username === name
                 )
+
+                if(email === "anonymous" || name === "current") {
+                    setIsError(true);
+                    setErrorMessage("Wrong username or password");
+                    return;
+                }
+
                 if (!user) {
                     if (checkPasswordStrength(password)) {
                         setIsRegisterSuccess(true);
@@ -92,7 +105,7 @@ export function Login() {
 
     return (
         <div class="login">
-            <h1>Login</h1>
+            <h1>{isRegister ? "Register" : "Login"}</h1>
             {/* <ul>
                 {users.map((user, index) => (
                     <li key={index}>
@@ -104,19 +117,30 @@ export function Login() {
             </ul> */}
 
             <div class="input">
-                <input type='text' placeholder="Username" value={name}
-                    onChange={e => setName(e.currentTarget.value)}> </input>
+                {isRegister &&
+                    <input type='text' placeholder="Username" value={name}
+                        onChange={e => setName(e.currentTarget.value)}> </input>
+                }
 
                 <input type='email' placeholder="Email" value={email}
                     onChange={e => setEmail(e.currentTarget.value)}> </input>
 
                 <input type='password' placeholder="Password" value={password}
                     onChange={e => setPassword(e.currentTarget.value)}> </input>
+            
+            <button class="login-button" onClick={
+                e => isRegister ? handleRegister() : handleLogin()
+            }>
+                {isRegister ? "Register" : "Login"}
+            </button>
+
             </div>
 
-            <p>Have no account? <button onClick={e => handleRegister()}>Register</button></p>
-
-            <button onClick={e => handleLogin()}>Login</button>
+            <p> {isRegister ? "Already have an account?" : "Have no account?"}
+                <button onClick={e => setIsRegister(!isRegister)}>
+                    {isRegister ? "Login here" : "Register here"}
+                </button>
+            </p>
 
             {isRegisterSuccess && <p>SUCCESSFULLY Registered! Please login {name}</p>}
             {isError && <p>{errorMessage}</p>}

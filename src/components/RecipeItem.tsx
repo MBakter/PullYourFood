@@ -4,7 +4,7 @@ import "./recipeItem.less"
 export function RecipeItem(
     { recipe, handleRate }: { recipe: Recipe, handleRate: (recipe: Recipe, index: number) => void }) {
 
-    console.log(recipe.ingredients);
+    /* console.log(recipe.ingredients); */
 
     return (
         <div class="recipeItem">
@@ -29,7 +29,7 @@ export function RecipeItem(
                             person
                         </span>
 
-                        <a href="">{recipe.creator}</a>
+                        <a href={`/account?username=${recipe.creator}`}>{recipe.creator}</a>
                     </div>
                 </div>
                 <h3>{recipe.name}</h3>

@@ -3,10 +3,38 @@
 .explore {
 
     text-align: center;
-    padding: 50px;
+    padding: 1rem;
+
+    .top-bar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        #arrow {
+            width: 75px;
+            margin-left: 2rem;
+
+            &:hover {
+                /* transform: scale(1.3); */
+                /* transition: transform 0.2s ease-in-out; */
+                animation: moveLeftToRight ease-in-out 1s infinite;   
+            }
+            @keyframes moveLeftToRight {
+                0% { transform: translateX(0px); }
+                75% { transform: translateX(-20px); }
+                100% { transform: translateX(0px); }
+            }
+        }
+    }
 
     h1 {
         font-size: 3rem;
+        width: 80%;
+        margin: 4rem auto;
+        text-transform: uppercase;
+        background-color: lighten(@background-color-dark, 10%);
+        border-radius: 200px;
         text-shadow: 4px 4px 6px darken(@background-color-dark, 5%);
     }
 
