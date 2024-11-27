@@ -9,6 +9,10 @@ export function RecipeItem(
     return (
         <div class="recipeItem">
 
+            <div class="category">
+                <span>{recipe.category}</span>
+            </div>
+
             <div class="attribute">
 
                 <div class="topbar">
@@ -19,7 +23,6 @@ export function RecipeItem(
                         </span>
                         <p>{recipe.time}</p>
                     </div>
-
 
                     <div class="creator">
                         <span class="material-symbols-outlined">
@@ -44,8 +47,6 @@ export function RecipeItem(
                         })}
                     </ul>
                 </div>
-
-
 
                 <div class="rating">
                     <div class="line"></div>

@@ -10,7 +10,7 @@
     text-align: left;
 
     background: @card-background;
-    padding: 10px;
+    
     box-shadow: 6px 6px 5px darken(@background-color-dark, 5%);
     max-width: 400px;
     margin: 16px auto;
@@ -18,8 +18,6 @@
     .material-symbols-outlined {
         margin-right: 5px;
     }
-
-
 
     h3 {
         font-size: 2rem;
@@ -29,9 +27,24 @@
         text-align: center;
     }
 
+    .category {
+        background-color: lighten(@card-background, 50%);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding: 10px;
+        box-shadow: 0 1px 5px darken(@background-color-dark, 5%);
+
+        span {
+            margin-left: 5%;
+            font-size: 1.5rem;
+            color: @text-color-light;
+        }
+    }
+
     .attribute {
         margin: 2px 0;
-        width: 100%;
+
+        padding: 10px;
     }
 
     .topbar {
@@ -60,8 +73,6 @@
             flex-direction: row;
         }
     }
-
-
 
     .ingredients {
 

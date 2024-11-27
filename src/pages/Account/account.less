@@ -25,6 +25,101 @@
         color: @header-color;
     }
 
+    .name-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0 20px;
+        gap: 20px;
+
+        .material-symbols-outlined {
+            font-size: 48px;
+            font-variation-settings:
+                'FILL' 1,
+        }
+    }
+
+    #name {
+        font-size: 1.5rem;
+    }
+
+    .data-container {
+        margin-left: 3rem;
+    }
+
+    .data {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        font-size: 1.2rem;
+
+        p {
+            margin: 4px 0;
+        }
+
+        .password-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+
+            #password {
+                animation: fadeIn ease 1s forwards;
+            }
+    
+            @keyframes fadeIn {
+                0% {
+                    opacity: 0;
+                }
+    
+                100% {
+                    opacity: 1;
+                }
+            }
+
+        }
+
+        button {
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: @button-color;
+            color: @text-color-dark;
+            transition: all 0.6s;
+
+            &.shown {
+                animation: slide-in ease-in 0.5s;
+                @keyframes slide-in {
+                    0% { transform: translateX(-100px); }
+                    100% { transform: 0; }
+                }
+            }
+            &.hidden {
+                animation: slide-out ease-in 0.5s;
+                @keyframes slide-out {
+                    0% { transform: translateX(100px); }
+                    100% { transform: 0; }
+                }
+            }
+
+            &:hover {
+                color: @text-color-dark;
+                color: lighten(@text-color-dark, 40%);
+                border-color: fade(@text-color-dark, 50%);
+                background-color: lighten(@background-color-dark, 40%);
+            }
+        }
+    }
+
+    #recipeNum {
+        font-size: 1.1rem;
+    }
+
+
     .logout button {
         padding: 0.75rem 1.5rem;
         border-radius: 8px;
@@ -33,11 +128,11 @@
         border: none;
         background-color: @button-color;
         color: @text-color-dark;
-        transition: all 0.3s ease;
+        transition: all 0.5s ease;
 
         &:hover {
-            background-color: lighten(@button-color, 15%);
-            color: @text-color-light;
+            background-color: @error-color;
+            color: lighten(@text-color-dark, 10%);
         }
     }
 
