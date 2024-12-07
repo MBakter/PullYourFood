@@ -22,42 +22,35 @@
         margin: 0 auto;
 
         .category:nth-child(1) {
-
             grid-column: span 3; // First item spans all 3 columns
         }
 
         .category:nth-child(2) {
-            background-image: url("./../../assets/dish.jpg");
             background-size: cover;
             grid-column: span 1; // Second item starts a new row
         }
 
         .category:nth-child(3) {
-            background-image: url("./../../assets/takeaway.jpg");
             background-size: cover;
             grid-column: span 1;
         }
 
         .category:nth-child(4) {
-            background-image: url("./../../assets/soup.jpg");
             background-size: cover;
             grid-column: span 1;
         }
 
         .category:nth-child(5) {
-            background-image: url("./../../assets/dessert.jpg");
             background-size: cover;
             grid-column: span 1;
         }
 
         .category:nth-child(6) {
-            background-image: url("./../../assets/beverage.jpg");
             background-size: cover;
             grid-column: span 1;
         }
 
         .category:nth-child(7) {
-            background-image: url("./../../assets/festive.jpg");
             background-size: cover;
             grid-column: span 1;
         }
@@ -79,14 +72,15 @@
 
             h2 {
                 font-size: 2rem;
-                color: lighten(@text-color-dark, 30%);
+                color: @text-color-dark;
+                /* color: lighten(@text-color-dark, 30%); */
                 margin: 0;
-                text-shadow: 4px 4px 6px darken(@background-color-dark, 50%);
+                /* text-shadow: 4px 4px 6px darken(@background-color-dark, 50%); */
             }
 
             &:hover {
                 box-shadow: 0 0px 16px darken(@background-color-dark, 10%);
-                transform: scale(1.1);
+                transform: scale(1.05);
             }
         }
     }

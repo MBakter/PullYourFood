@@ -10,6 +10,8 @@ Csillagos elemek opcionálisak alfa verzióban
   - Ezért áttérek contextes megoldásra, a currentUsert eltárolom index fileban
   - Valamilyen hook kell amit meg tudok hívni explicit, hogy mikor szeretném, hogy kérje le a currentUser adatát újra.
 
+- Ki kell tenni mindent a DAO-ba, fasznak adjuk indexből accountba
+
 ## Pages
 
 ### Explore
@@ -58,6 +60,8 @@ Mindenki regisztrálhat és tölthet fel/le illetve értékelhet recepteket
   - Minél nagyobb annál előrébb lesz a receptje az oldalon
 
 ## Jegyzetek
+
+- A user által feltöltött receptek page zért új db call és nem a recipes tömöt járjuk be, mert az nem fog létezni. Lazy loadingolni kell majd az explore paget, memóriában nem tárolunk semmit csak amit épp megjelenítünk. Így best practice
 
 ### Bővítés
 

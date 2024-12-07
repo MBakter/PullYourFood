@@ -1,8 +1,9 @@
+import { handleRate } from "../model/dao";
 import { Recipe, User } from "../model/types";
 import "./recipeItem.less"
 
 export function RecipeItem(
-    { recipe, handleRate }: { recipe: Recipe, handleRate: (recipe: Recipe, index: number) => void }) {
+    { recipe }: { recipe: Recipe}) {
 
     /* console.log(recipe.ingredients); */
 

@@ -37,3 +37,9 @@ export type Recipe = {
     ingredients: string[],
     rating: [number, number, number, number, number]
 }
+
+export const routeToPage = (page: string) => {
+    window.history.pushState(null, '', `/${page}`); // Change URL
+    window.dispatchEvent(new Event('popstate'));   // Notify router
+    window.location.reload();
+}

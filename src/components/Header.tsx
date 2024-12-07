@@ -1,9 +1,9 @@
 import { useLocation } from 'preact-iso';
-import { useState } from 'preact/hooks';
+import { useMemo, useState } from 'preact/hooks';
 
 import "./components.less"
 
-export function Header() {
+export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
 	const { url } = useLocation();
 
 	let [isHamburger, setIsHamburger] = useState(false);
@@ -23,10 +23,10 @@ export function Header() {
 						<a href="/explore" class={url == '/explore' && 'active'}>
 							Explore
 						</a>
-						<a href="/account" class={url == '/account' && 'active'}>
-							{ sessionStorage.getItem("currentUser") === null ? "Login" : "Account"}
+						<a href={ isLoggedIn ? "/account" : "/login"} class={url == '/account' && 'active'}>
+							{isLoggedIn ? "Account" : "Login"}
 						</a>
-						
+
 						<a href="javascript:void(0);" class="icon" onClick={toggleMenu}>
 							&#9776;
 						</a>

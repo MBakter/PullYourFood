@@ -2,6 +2,14 @@ import { useEffect, useState } from 'preact/hooks';
 import './home.less';
 import { Recipe } from '../../model/types';
 
+function CategoryItem({ name }: { name: string }) {
+	return (
+		<a class="category" href={`/explore?category=${name.toLowerCase()}`}>
+			<h2>{name}</h2>
+		</a>
+	)
+}
+
 export function Home() {
 	return (
 		<div class="home">
@@ -9,35 +17,20 @@ export function Home() {
 
 			<div class="category-grid">
 
-				<a class="category" href="/explore?category=all">
-					<h2>All</h2>
-				</a>
+				<CategoryItem name="All"/>
+				
+				<CategoryItem name="Dish"/>
 
-				<a class="category" href="/explore?category=dish">
-					<h2>Dish</h2>
-				</a>
+				<CategoryItem name="Takeaway"/>
 
-				<a class="category" href="/explore?category=takeaway">
-					<h2>Takeaway</h2>
-				</a>
+				<CategoryItem name="Soup"/>
 
-				<a class="category" href="/explore?category=soup">
-					<h2>Soup</h2>
-				</a>
+				<CategoryItem name="Dessert"/>
 
-				<a class="category" href="/explore?category=dessert">
-					<h2>Dessert</h2>
-				</a>
+				<CategoryItem name="Beverage"/>
 
-				<a class="category" href="/explore?category=beverage">
-					<h2>Beverage</h2>
-				</a>
-
-				<a class="category" href="/explore?category=festive">
-					<h2>Festive</h2>
-				</a>
-
-
+				<CategoryItem name="Festive"/>
+				
 			</div>
 
 		</div>

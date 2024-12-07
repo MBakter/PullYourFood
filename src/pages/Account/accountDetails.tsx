@@ -1,21 +1,17 @@
 import { useEffect, useState } from "preact/hooks";
-import { Login } from "./login";
-import { UploadRecipe } from "./UploadRecipe";
-import { Profile, User } from "../../model/types";
+import { Login } from "../Login/login";
+import { Profile, routeToPage, User } from "../../model/types";
 import "./account.less"
+import { useLocation } from "preact-iso";
+import { setUserInSessionStorage } from "../../model/storage";
 
-export function YourAccount({ profile, password }: { profile: Profile, password: string }) {
+export function AccountDetails({ profile, password }: { profile: Profile, password: string }) {
 
     const [showPassword, setShowPassword] = useState(false);
 
     const handleLogout = () => {
-        sessionStorage.setItem("currentUser", JSON.stringify({
-            username: "anonymous",
-            email: "anonymous",
-            password: "anonymous",
-            numOfRecipes: 0
-        }));
-        window.location.reload();
+        setUserInSessionStorage();
+        routeToPage("login");
     }
 
     return (
@@ -44,7 +40,6 @@ export function YourAccount({ profile, password }: { profile: Profile, password:
                         <span class="material-symbols-outlined">
                             key
                         </span>
-
 
                         <div class="password-container">
                             {showPassword &&
@@ -75,10 +70,7 @@ export function YourAccount({ profile, password }: { profile: Profile, password:
                     <div class="logout">
                         <button onClick={() => handleLogout()}>Logout</button>
                     </div>
-
                     <div class="line"></div>
-
-                    <UploadRecipe />
                 </div>
             }
 

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "preact/hooks";
 import { addUser } from "../../model/dao"
-import { User } from "../../model/types";
+import { routeToPage, User } from "../../model/types";
 
 import "./login.less"
+import { useLocation } from "preact-iso";
+import { setUserInSessionStorage } from "../../model/storage";
 
 const checkPasswordStrength = (password: string): boolean => {
     if (password.length >= 8 && /\d/.test(password))
@@ -22,16 +24,6 @@ export function Login() {
     let [password, setPassword] = useState("");
     let [email, setEmail] = useState("");
 
-    /* const [users, setUsers] = useState<User[]>([]);
-
-    const fetchData = () => {
-        fetch("http://localhost:8000/users")
-            .then(response => response.json())
-            .then((data: User[]) => setUsers(data));
-    }
-
-    useEffect(() => fetchData(), []); */
-
     const handleLogin = () => {
 
         fetch("http://localhost:8000/users")
@@ -41,7 +33,7 @@ export function Login() {
                     u => u.email === email && u.password === password
                 );
 
-                if(email === "anonymous" || name === "current") {
+                if (email === "anonymous" || name === "current") {
                     setIsError(true);
                     setErrorMessage("Wrong username or password");
                     return;
@@ -49,9 +41,9 @@ export function Login() {
 
                 if (user) {
                     setIsError(false);
-                    sessionStorage.setItem("currentUser", JSON.stringify(user));
+                    setUserInSessionStorage(user);
                     console.log("Logged in as: " + user.username);
-                    window.location.reload();
+                    routeToPage("account");
                 }
                 else {
                     setIsError(true);
@@ -69,7 +61,7 @@ export function Login() {
                     u => u.email === email || u.username === name
                 )
 
-                if(email === "anonymous" || name === "current") {
+                if (email === "anonymous" || name === "current") {
                     setIsError(true);
                     setErrorMessage("Wrong username or password");
                     return;
@@ -106,15 +98,6 @@ export function Login() {
     return (
         <div class="login">
             <h1>{isRegister ? "Register" : "Login"}</h1>
-            {/* <ul>
-                {users.map((user, index) => (
-                    <li key={index}>
-                        <h4>{user.username}</h4>
-                        <p>Password: {user.password}</p>
-                        <p>Email: {user.email}</p>
-                    </li>
-                ))}
-            </ul> */}
 
             <div class="input">
                 {isRegister &&
@@ -127,12 +110,12 @@ export function Login() {
 
                 <input type='password' placeholder="Password" value={password}
                     onChange={e => setPassword(e.currentTarget.value)}> </input>
-            
-            <button class="login-button" onClick={
-                e => isRegister ? handleRegister() : handleLogin()
-            }>
-                {isRegister ? "Register" : "Login"}
-            </button>
+
+                <button class="login-button" onClick={
+                    e => isRegister ? handleRegister() : handleLogin()
+                }>
+                    {isRegister ? "Register" : "Login"}
+                </button>
 
             </div>
 

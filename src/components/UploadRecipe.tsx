@@ -1,9 +1,8 @@
 import { useState } from "preact/hooks";
-import { Profile, Recipe, RecipeCategory, RecipeTime, User } from "../../model/types";
 import { FormEvent } from "preact/compat";
-import { addRecipe, checkRecipeAvaliability, increaseRecipeNumber } from "../../model/dao";
-
 import "./uploadRecipe.less"
+import { checkRecipeAvaliability, increaseRecipeNumber, addRecipe } from "../model/dao";
+import { RecipeCategory, RecipeTime, Recipe } from "../model/types";
 
 export function UploadRecipe() {
 
