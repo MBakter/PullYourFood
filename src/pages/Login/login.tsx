@@ -1,10 +1,9 @@
-import { useEffect, useState } from "preact/hooks";
-import { addUser } from "../../model/dao"
-import { routeToPage, User } from "../../model/types";
+import { useState } from "preact/hooks";
+import { addUser, checkUserAvaliability, findUser } from "../../model/dao"
+import { routeToPage, User } from "../../model/model";
+import { setUserInSessionStorage } from "../../model/storage";
 
 import "./login.less"
-import { useLocation } from "preact-iso";
-import { setUserInSessionStorage } from "../../model/storage";
 
 const checkPasswordStrength = (password: string): boolean => {
     if (password.length >= 8 && /\d/.test(password))
@@ -25,42 +24,33 @@ export function Login() {
     let [email, setEmail] = useState("");
 
     const handleLogin = () => {
-
-        fetch("http://localhost:8000/users")
-            .then(response => response.json())
-            .then((users: User[]) => {
-                const user: User = users.find(
-                    u => u.email === email && u.password === password
-                );
-
+        findUser(email, password)
+            .then((user) => {
                 if (email === "anonymous" || name === "current") {
                     setIsError(true);
                     setErrorMessage("Wrong username or password");
                     return;
                 }
-
                 if (user) {
                     setIsError(false);
                     setUserInSessionStorage(user);
-                    console.log("Logged in as: " + user.username);
                     routeToPage("account");
-                }
-                else {
+                } else {
                     setIsError(true);
                     setErrorMessage("Wrong username or password");
-                };
-            });
+                }
+            })
+            .catch((error) => {
+                setIsRegisterSuccess(false);
+                setIsError(true);
+                setErrorMessage(error.message);
+            });;
     }
 
     const handleRegister = () => {
 
-        fetch("http://localhost:8000/users")
-            .then(response => response.json())
-            .then((users: User[]) => {
-                const user: User = users.find(
-                    u => u.email === email || u.username === name
-                )
-
+        checkUserAvaliability(name, email)
+            .then((user) => {
                 if (email === "anonymous" || name === "current") {
                     setIsError(true);
                     setErrorMessage("Wrong username or password");
@@ -85,14 +75,18 @@ export function Login() {
                         setIsError(true);
                         setErrorMessage("Password must contain at least 8 characters and one number");
                     }
-
                 }
                 else {
                     setIsRegisterSuccess(false);
                     setIsError(true);
                     setErrorMessage("User already registered. Please log in");
                 }
-            });
+            })
+            .catch((error) => {
+                setIsRegisterSuccess(false);
+                setIsError(true);
+                setErrorMessage(error.message);
+            });;
     }
 
     return (
@@ -109,10 +103,11 @@ export function Login() {
                     onChange={e => setEmail(e.currentTarget.value)}> </input>
 
                 <input type='password' placeholder="Password" value={password}
+                    onKeyDown={(e) => { if (e.key === 'Enter') isRegister ? handleRegister() : handleLogin(); }}
                     onChange={e => setPassword(e.currentTarget.value)}> </input>
 
                 <button class="login-button" onClick={
-                    e => isRegister ? handleRegister() : handleLogin()
+                    () => isRegister ? handleRegister() : handleLogin()
                 }>
                     {isRegister ? "Register" : "Login"}
                 </button>

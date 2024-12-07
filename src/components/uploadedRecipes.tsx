@@ -5,9 +5,8 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 
 import "./uploadedRecipes.less";
 import { getRecipeByCreator } from "../model/dao";
-import { Recipe } from "../model/types";
-import { RecipeItem } from "./RecipeItem";
-
+import { Recipe } from "../model/model";
+import { RecipeItem } from "./recipeItem";
 //Azért új db call és nem a recipes tömöt járjuk be, mert az nem fog létezni. 
 //Lazy loadingolni kell majd az explore paget, memóriában nem tárolunk semmit csak amit épp megjelenítünk
 //Így best practice

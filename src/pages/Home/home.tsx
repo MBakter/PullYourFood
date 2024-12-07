@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'preact/hooks';
 import './home.less';
-import { Recipe } from '../../model/types';
 
 function CategoryItem({ name }: { name: string }) {
 	return (

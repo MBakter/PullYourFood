@@ -1,7 +1,7 @@
 import './explore.less';
-import { Recipe } from '../../model/types';
-import { RecipeItem } from '../../components/RecipeItem';
+import { Recipe } from '../../model/model';
 import arrow from './../../assets/return.png';
+import { RecipeItem } from '../../components/recipeItem';
 
 export function ExploreView({ recipes, category }: { recipes: Recipe[]; category: string }) {
 	return (

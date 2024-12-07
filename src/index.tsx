@@ -1,18 +1,17 @@
 import "preact/debug"
 import { render } from 'preact';
 import { LocationProvider, Router, Route } from 'preact-iso';
-
-import './index.less';
-
-import { Header } from './components/Header.jsx';
+import { Header } from "./components/header";
 import { Home } from './pages/Home/home.js';
 import { NotFound } from './pages/_404.jsx';
 import { Account } from "./pages/Account/account";
 import { Explore } from "./pages/Explore/explore";
 import { useEffect, useState } from "preact/hooks";
-import { Recipe, User } from "./model/types";
+import { Recipe } from "./model/model";
 import { Login } from "./pages/Login/login";
 import { setUserInSessionStorage } from "./model/storage";
+
+import './index.less';
 
 export function App() {
 	const [recipes, setRecipes] = useState<Recipe[]>([]);

@@ -1,5 +1,5 @@
 import { handleRate } from "../model/dao";
-import { Recipe, User } from "../model/types";
+import { Recipe, User } from "../model/model";
 import "./recipeItem.less"
 
 export function RecipeItem(

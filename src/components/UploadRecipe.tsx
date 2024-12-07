@@ -2,7 +2,7 @@ import { useState } from "preact/hooks";
 import { FormEvent } from "preact/compat";
 import "./uploadRecipe.less"
 import { checkRecipeAvaliability, increaseRecipeNumber, addRecipe } from "../model/dao";
-import { RecipeCategory, RecipeTime, Recipe } from "../model/types";
+import { RecipeCategory, RecipeTime, Recipe, routeToPage } from "../model/model";
 
 export function UploadRecipe() {
 
@@ -11,6 +11,9 @@ export function UploadRecipe() {
     const [time, setTime] = useState<RecipeTime>(RecipeTime.AVERAGE);
     const [ingredients, setIngredients] = useState<string[]>([]);
     const [currentIngredient, setCurrentIngredient] = useState<string>("");
+
+    let [isError, setIsError] = useState(false);
+    let [errorMessage, setErrorMessage] = useState("");
 
     const emptyAllFields = () => {
         setName("");
@@ -23,9 +26,12 @@ export function UploadRecipe() {
     const handleAddIngredient = () => {
         if (currentIngredient.trim() != "" && currentIngredient.length <= 20) {
             setIngredients([...ingredients, currentIngredient.trim()]);
+            setIsError(false);
+            setErrorMessage("");
         }
         else {
-            //TODO: Raise error note on page
+            setIsError(true);
+            setErrorMessage("Ingredient name is too long or empty");
         }
         setCurrentIngredient("");
     }
@@ -36,32 +42,43 @@ export function UploadRecipe() {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-
         const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
-        //Check if there is already a recipe with this name
-        if (!checkRecipeAvaliability(currentUser, name)) {
-            console.log("Already added");
-            //TODO: Raise error note on page
-            return;
-        }
+        checkRecipeAvaliability(currentUser, name).then((success) => {
+            if (success) {
+                const newRecipe: Recipe = {
+                    name: name,
+                    creator: currentUser.username,
+                    category: category,
+                    time: time,
+                    ingredients: ingredients,
+                    rating: [0, 0, 0, 0, 0]
+                }
 
-        const newRecipe: Recipe = {
-            name: name,
-            creator: currentUser.username,
-            category: category,
-            time: time,
-            ingredients: ingredients,
-            rating: [0, 0, 0, 0, 0]
-        }
-
-        increaseRecipeNumber(currentUser, 1);
-
-        addRecipe(newRecipe);
-
-        emptyAllFields();
-
-        console.log("Recipe added");
+                addRecipe(newRecipe).then((success) => {
+                    if (success) {
+                        increaseRecipeNumber(currentUser, 1).then((success) => {
+                            if (success) {
+                                emptyAllFields();
+                                console.log("Recipe added");
+                                setIsError(false);
+                                routeToPage("account");
+                            }
+                        });
+                    }
+                    else {
+                        setIsError(true);
+                        setErrorMessage("There was an error adding your recipe, please try again");
+                    }
+                });
+            }
+            else {
+                console.log("Already added");
+                setIsError(true);
+                setErrorMessage("This recipe is already added");
+                return;
+            }
+        });
     }
 
     return (
@@ -142,6 +159,10 @@ export function UploadRecipe() {
                 </div>
 
                 <button type="submit">Submit Recipe</button>
+                {isError && <p class="errorMessage" >{errorMessage}</p>}
+
+                <div class="line"></div>
+
             </form>
         </div>
     );

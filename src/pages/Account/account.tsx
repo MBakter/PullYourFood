@@ -1,11 +1,10 @@
 import { useEffect, useState } from "preact/hooks";
-import { Login } from "../Login/login";
-import { Profile, Recipe, User } from "../../model/types";
+import { Profile, User } from "../../model/model";
 import "./account.less"
 import { AccountDetails } from "./accountDetails";
 import { useLocation } from "preact-iso";
-import { UploadRecipe } from "../../components/UploadRecipe";
 import { UploadedRecipes } from "../../components/uploadedRecipes";
+import { UploadRecipe } from "../../components/uploadRecipe";
 
 export function Account() {
 

@@ -1,11 +1,9 @@
-import { useEffect, useMemo, useState } from 'preact/hooks';
-import './explore.less';
-import { Recipe } from '../../model/types';
-import { RecipeItem } from '../../components/RecipeItem';
+import { useMemo } from 'preact/hooks';
+import { Recipe } from '../../model/model';
 import { useLocation } from 'preact-iso';
-
-import arrow from "./../../assets/return.png";
 import { ExploreView } from './exploreView';
+
+import './explore.less';
 
 export function Explore({ recipes }: { recipes: Recipe[] }) {
 

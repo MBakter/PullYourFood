@@ -1,7 +1,7 @@
 import { useLocation } from 'preact-iso';
-import { useMemo, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 
-import "./components.less"
+import "./header.less"
 
 export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
 	const { url } = useLocation();
