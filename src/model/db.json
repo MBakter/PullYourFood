@@ -5,7 +5,7 @@
       "username": "default",
       "password": "admin1234",
       "email": "admin",
-      "numOfRecipes": 2
+      "numOfRecipes": 3
     },
     {
       "id": "5ac3",
@@ -20,13 +20,6 @@
       "password": "admin1234",
       "email": "lutanfyah@gmail.com",
       "numOfRecipes": 2
-    },
-    {
-      "id": "e94b",
-      "username": "Kakiskuki",
-      "password": "admin1234",
-      "email": "kakiskuki",
-      "numOfRecipes": 5
     }
   ],
   "recipes": [
@@ -143,89 +136,17 @@
       ]
     },
     {
-      "id": "651f",
-      "name": "kaki",
-      "creator": "Kakiskuki",
-      "category": "Dessert",
+      "id": "a30c",
+      "name": "Házi csirkés marharagus pizza!",
+      "creator": "default",
+      "category": "Dish",
       "time": "5-15min",
       "ingredients": [
-        "viz",
-        "kaja"
-      ],
-      "rating": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "id": "24c6",
-      "name": "asdasddds",
-      "creator": "Kakiskuki",
-      "category": "Dish",
-      "time": "30-60min",
-      "ingredients": [
-        "asd",
-        "ds",
-        "ghg"
-      ],
-      "rating": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "id": "e6ad",
-      "name": "ertert",
-      "creator": "Kakiskuki",
-      "category": "Soup",
-      "time": "1h+",
-      "ingredients": [
-        "ert",
-        "fbx",
-        "nghn"
-      ],
-      "rating": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "id": "eb54",
-      "name": "zuti",
-      "creator": "Kakiskuki",
-      "category": "Dish",
-      "time": "30-60min",
-      "ingredients": [
-        "gh",
-        "hg",
-        "k"
-      ],
-      "rating": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "id": "293b",
-      "name": "zui",
-      "creator": "Kakiskuki",
-      "category": "Dish",
-      "time": "30-60min",
-      "ingredients": [
-        "ii",
-        "jjjj"
+        "házi",
+        "készítésű",
+        "csirke",
+        "marharagú",
+        "és piazza"
       ],
       "rating": [
         0,

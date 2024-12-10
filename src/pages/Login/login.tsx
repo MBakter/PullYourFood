@@ -4,6 +4,7 @@ import { routeToPage, User } from "../../model/model";
 import { setUserInSessionStorage } from "../../model/storage";
 
 import "./login.less"
+import { InputField } from "../../components/inputField";
 
 const checkPasswordStrength = (password: string): boolean => {
     if (password.length >= 8 && /\d/.test(password))
@@ -44,7 +45,7 @@ export function Login() {
                 setIsRegisterSuccess(false);
                 setIsError(true);
                 setErrorMessage(error.message);
-            });;
+            });
     }
 
     const handleRegister = () => {
@@ -95,16 +96,16 @@ export function Login() {
 
             <div class="input">
                 {isRegister &&
-                    <input type='text' placeholder="Username" value={name}
-                        onChange={e => setName(e.currentTarget.value)}> </input>
+                    <InputField className="login" type="text" placeholder="Username"
+                        value={name} onChange={setName} />
                 }
 
-                <input type='email' placeholder="Email" value={email}
-                    onChange={e => setEmail(e.currentTarget.value)}> </input>
+                <InputField className="login" type="email" placeholder="Email"
+                    value={email} onChange={setEmail} />
 
-                <input type='password' placeholder="Password" value={password}
-                    onKeyDown={(e) => { if (e.key === 'Enter') isRegister ? handleRegister() : handleLogin(); }}
-                    onChange={e => setPassword(e.currentTarget.value)}> </input>
+                <InputField className="login" type="password" placeholder="Password"
+                    value={password} onChange={setPassword}
+                    onEnter={isRegister ? handleRegister : handleLogin} />
 
                 <button class="login-button" onClick={
                     () => isRegister ? handleRegister() : handleLogin()

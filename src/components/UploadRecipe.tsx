@@ -1,8 +1,9 @@
-import { useState } from "preact/hooks";
+import { StateUpdater, useState } from "preact/hooks";
 import { FormEvent } from "preact/compat";
 import "./uploadRecipe.less"
 import { checkRecipeAvaliability, increaseRecipeNumber, addRecipe } from "../model/dao";
 import { RecipeCategory, RecipeTime, Recipe, routeToPage } from "../model/model";
+import { InputField } from "./inputField";
 
 export function UploadRecipe() {
 
@@ -44,6 +45,18 @@ export function UploadRecipe() {
         e.preventDefault();
         const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
+        if(name.trim() == "" || name.length >= 40) {
+            setIsError(true);
+            setErrorMessage("Incorrect name (must be something and smaller than 20 characters)")
+            return;
+        }
+
+        if(ingredients.length <= 1) {
+            setIsError(true);
+            setErrorMessage("The recipe MUST NOT BE EMPTY! thanks...");
+            return;
+        }
+
         checkRecipeAvaliability(currentUser, name).then((success) => {
             if (success) {
                 const newRecipe: Recipe = {
@@ -83,15 +96,16 @@ export function UploadRecipe() {
 
     return (
         <div class="uploadRecipe">
-            <form onSubmit={e => handleSubmit(e)}>
+            <form onSubmit={e => handleSubmit(e)}
+                onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}>
+
                 <h2>Upload Recipe</h2>
 
                 <div class="input name">
                     <label> Name: </label>
-                    <input
-                        type="text" value={name} required
-                        onChange={(e) => setName(e.currentTarget.value)}
-                    />
+                    <InputField className="uploadRecipe" type="text"
+                        placeholder="pl.: Bolognai spagetti" value={name} onChange={setName} />
+
                 </div>
 
                 <div class="input category">
@@ -128,16 +142,17 @@ export function UploadRecipe() {
                         Ingredients:
                     </label>
                     <div class="input ingredients">
-                        <input
-                            type="text"
-                            value={currentIngredient}
-                            onChange={(e) => setCurrentIngredient(e.currentTarget.value)}
-                        />
+
+                        <InputField className="uploadRecipe" type="text"
+                            placeholder="pl.: Sajt" value={currentIngredient} 
+                            onChange={setCurrentIngredient} onEnter={handleAddIngredient}/>
+
                         <button type="button" onClick={handleAddIngredient}>
                             <span class="material-symbols-outlined">
                                 add
                             </span>
                         </button>
+
                     </div>
                     <ul>
                         {ingredients.map((ingredient, index) => (
