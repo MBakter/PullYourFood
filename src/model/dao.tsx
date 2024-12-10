@@ -2,10 +2,18 @@ import { Recipe, User } from "./model";
 
 const URL = "http://localhost:8000";
 
-export async function fetchUsers(): Promise<User[]> {
+async function fetchUsers(): Promise<User[]> {
     const response = await fetch(`${URL}/users`);
     if (!response.ok) {
         throw new Error("Failed to fetch users");
+    }
+    return response.json();
+}
+
+export async function fetchRecipes() : Promise<Recipe[]> {
+    const response = await fetch(`${URL}/recipes`);
+    if (!response.ok) {
+        throw new Error("Failed to fetch recipes");
     }
     return response.json();
 }
