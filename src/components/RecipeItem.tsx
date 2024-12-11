@@ -1,11 +1,17 @@
 import { handleRate } from "../model/dao";
 import { Recipe, User } from "../model/model";
+import { Icon } from "./icon";
+import { InputButton } from "./inputButton";
 import "./recipeItem.less"
 
-export function RecipeItem(
-    { recipe }: { recipe: Recipe}) {
+/**
+ * This component renders a single recipe with its details, including category, time, creator, ingredients, and ratings.
+ * 
+ * @param recipe - The recipe object containing all the details
+ * @returns The recipe item component displaying the recipe information
+ */
 
-    /* console.log(recipe.ingredients); */
+export function RecipeItem({ recipe }: { recipe: Recipe}) {
 
     return (
         <div class="recipeItem">
@@ -19,16 +25,12 @@ export function RecipeItem(
                 <div class="topbar">
 
                     <div class="time">
-                        <span class="material-symbols-outlined">
-                            schedule
-                        </span>
+                        <Icon iconName="schedule"/>
                         <p>{recipe.time}</p>
                     </div>
 
                     <div class="creator">
-                        <span class="material-symbols-outlined">
-                            person
-                        </span>
+                        <Icon iconName="person"/>
 
                         <a href={`/account?username=${recipe.creator}`}>{recipe.creator}</a>
                     </div>

@@ -9,6 +9,18 @@ type AccountViewProps = {
     currentUserSession: string
 }
 
+/**
+ * This component displays the account view:
+ * - The details of the user and it's uploaded recipes
+ * If it is the current user it displays:
+ *  - The ability to upload new recipes too.
+ * It conditionally renders components based on the user's state, including checking if the user is logged in or anonymous.
+ * 
+ * @param profile: The user's profile information
+ * @param username: The username of the current user
+ * @param currentUserSession: The session data containing the current user's information
+ * @returns The UI components for the user's account details, uploaded recipes, and upload recipe functionality
+ */
 export function AccountView({profile, username, currentUserSession}: AccountViewProps) {
     return (
         <div class="account-container">

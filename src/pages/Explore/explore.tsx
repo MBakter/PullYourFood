@@ -5,6 +5,14 @@ import { ExploreView } from './exploreView';
 
 import './explore.less';
 
+/**
+ * This is the logic for the explore page
+ * It handles filtering and displaying recipes based on the selected category from the URL's query parameters.
+ * It uses the category from the URL (defaulting to 'all') to filter the list of recipes.
+ * 
+ * @param recipes: The list of all available recipes
+ * @returns The ExploreView components which does the rendering
+ */
 export function Explore({ recipes }: { recipes: Recipe[] }) {
 
 	//Url-ből kiszedjük a szűrőfeltételt (default:all)

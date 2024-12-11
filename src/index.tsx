@@ -14,16 +14,30 @@ import { setUserInSessionStorage } from "./model/storage";
 import './index.less';
 import { fetchRecipes } from "./model/dao";
 
+/**
+ * The main application component that sets up the app's state, manages session storage, 
+ * and handles fetching recipes. It also listens for session storage changes to track 
+ * the login status and conditionally renders the header and routes based on the user's login status.
+ * 
+ * The UI components for the app, including the header and routing for different views
+ */
 export function App() {
 	const [recipes, setRecipes] = useState<Recipe[]>([]);
 
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+	/**
+ 	 * Sets up session storage if not already set, initializing the session for the current user.
+ 	 */
 	const setupSessionStorage = () => {
 		if (!sessionStorage.getItem("currentUser"))
 			setUserInSessionStorage();
 	}
 
+	/**
+	 * Fetches recipes from the database and updates the state with the retrieved recipes.
+	 * Logs an error if the fetch operation fails.
+	 */
 	useEffect(() => {
 		fetchRecipes()
 			.then(recipes => setRecipes(recipes))

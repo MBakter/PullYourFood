@@ -81,7 +81,7 @@ export const addRecipe = async (recipe: Recipe): Promise<boolean> => {
 };
 
 export const increaseRecipeNumber = async (user: User, inc: number): Promise<boolean> => {
-    console.log("INCREASED recipe number");
+    console.log("increased recipe number");
 
     return fetch(`${URL}/users?email=${user.email}`)
         .then((response) => {
@@ -132,9 +132,6 @@ export const getRecipeByCreator = async (username: string): Promise<Recipe[]> =>
             recipe.creator.toLowerCase() === username.toLowerCase()
         );
 
-        console.log("All: ", recipes);
-        console.log(`${username} Uploaded these:`, filteredRecipes);
-
         return filteredRecipes;
     } catch (error) {
         console.error("Error fetching recipes:", error);
@@ -144,8 +141,6 @@ export const getRecipeByCreator = async (username: string): Promise<Recipe[]> =>
 
 //Checks if there is already a recipe with this name uploaded by this user
 export const checkRecipeAvaliability = async (user: User, name: string): Promise<boolean> => {
-
-    console.log("Checking recipe");
 
     const response = await fetch(`${URL}/recipes?creator=${user.username}&name=${name}`);
     if (response.ok) {

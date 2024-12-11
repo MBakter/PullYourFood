@@ -21,6 +21,26 @@ type UploadRecipeViewProps = {
     handleSubmit: (e: FormEvent) => void;
 };
 
+/**
+ * This component renders the form for uploading a recipe, allowing the user to input the name, category, time, and ingredients.
+ * 
+ * @param name - The name of the recipe
+ * @param setName - Function to update the name of the recipe
+ * @param category - The category of the recipe
+ * @param setCategory - Function to update the category of the recipe
+ * @param time - The required time to prepare the recipe
+ * @param setTime - Function to update the time of the recipe
+ * @param ingredients - List of ingredients for the recipe
+ * @param currentIngredient - The ingredient currently being added
+ * @param setCurrentIngredient - Function to update the current ingredient
+ * @param isError - Boolean flag indicating whether there's an error
+ * @param errorMessage - The error message to be displayed
+ * @param handleAddIngredient - Function to add an ingredient to the list
+ * @param handleRemoveIngredient - Function to remove an ingredient from the list
+ * @param handleSubmit - Function to handle the form submission
+ * 
+ * @returns The recipe upload form component
+ */
 
 export function UploadRecipeView({ name, setName, category, setCategory, time, setTime, ingredients, currentIngredient,
     setCurrentIngredient, isError, errorMessage, handleAddIngredient, handleRemoveIngredient, handleSubmit }: UploadRecipeViewProps) {

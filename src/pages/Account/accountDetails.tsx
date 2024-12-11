@@ -4,11 +4,23 @@ import { setUserInSessionStorage } from "../../model/storage";
 
 import "./account.less"
 import { InputButton } from "../../components/inputButton";
+import { Icon } from "../../components/icon";
 
+/**
+ * This component displays the account details of a user, including their username, email, and the ability to toggle the visibility of the password.
+ * It also handles the logout functionality, which clears the session and redirects the user to the login page.
+ * 
+ * @param profile: The profile object containing the user's details
+ * @param password: The password of the user, which can be toggled for visibility. If it is empty we know it is not the current user
+ * @returns The UI displaying the user's account details and the option to log out
+ */
 export function AccountDetails({ profile, password }: { profile: Profile, password: string }) {
 
     const [showPassword, setShowPassword] = useState(false);
 
+    /**
+     * This function handles logging the user out by clearing the session and redirecting to the login page.
+     */
     const handleLogout = () => {
         setUserInSessionStorage();
         routeToPage("login");
@@ -17,9 +29,7 @@ export function AccountDetails({ profile, password }: { profile: Profile, passwo
     return (
         <div class="account">
             <div class="name-header">
-                <span class="material-symbols-outlined">
-                    account_circle
-                </span>
+                <Icon iconName="account_circle" />
                 <div class="name">
                     <h1 id="name" > {profile.username} </h1>
                 </div>
@@ -28,17 +38,13 @@ export function AccountDetails({ profile, password }: { profile: Profile, passwo
 
             <div class="data-container">
                 <div class="data">
-                    <span class="material-symbols-outlined">
-                        alternate_email
-                    </span>
+                    <Icon iconName="alternate_email" />
                     <p id="email"> {profile.email} </p>
                 </div>
 
                 {password != null &&
                     <div class="data">
-                        <span class="material-symbols-outlined">
-                            key
-                        </span>
+                        <Icon iconName="key"/>
 
                         <div class="password-container">
                             {showPassword &&
@@ -46,8 +52,8 @@ export function AccountDetails({ profile, password }: { profile: Profile, passwo
                                     {password}
                                 </p>
                             }
-                            <InputButton className={`account-details ${showPassword ? "shown" : "hidden"}`} onClick={() => setShowPassword(!showPassword)} 
-                            isIcon={false} textOrIconName={showPassword ? "Hide" : "Show"} />
+                            <InputButton className={`account-details ${showPassword ? "shown" : "hidden"}`} onClick={() => setShowPassword(!showPassword)}
+                                isIcon={false} textOrIconName={showPassword ? "Hide" : "Show"} />
 
                         </div>
 

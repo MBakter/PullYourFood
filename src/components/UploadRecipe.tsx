@@ -3,11 +3,13 @@ import { FormEvent } from "preact/compat";
 import "./uploadRecipe.less"
 import { checkRecipeAvaliability, increaseRecipeNumber, addRecipe } from "../model/dao";
 import { RecipeCategory, RecipeTime, Recipe, routeToPage } from "../model/model";
-import { InputField } from "./inputField";
-import { InputButton } from "./inputButton";
-import { InputDropdown } from "./inputDropdown";
 import { UploadRecipeView } from "./uploadRecipeView";
 
+/**
+ * This is the logic for uploading a recipe
+ * This is called in account if the user is logged in and if the account page is displaying the current user
+ * @returns The UploadRecipeView which renders the component
+ */
 export function UploadRecipe() {
 
     const [name, setName] = useState<string>("");
@@ -19,6 +21,9 @@ export function UploadRecipe() {
     let [isError, setIsError] = useState(false);
     let [errorMessage, setErrorMessage] = useState("");
 
+    /*
+    * Resets all the form fields to their initial values.
+    */
     const emptyAllFields = () => {
         setName("");
         setCategory(RecipeCategory.DISH);
@@ -27,6 +32,12 @@ export function UploadRecipe() {
         setCurrentIngredient("");
     }
 
+    /**
+    * Adds the current ingredient to the ingredients list after validation.
+    * - Checks if the ingredient is not empty and has a length <= 20 characters
+    * - If valid, adds it to the ingredients array and clears the input field
+    * - Displays an error message if the ingredient is invalid
+    */
     const handleAddIngredient = () => {
         if (currentIngredient.trim() != "" && currentIngredient.length <= 20) {
             setIngredients([...ingredients, currentIngredient.trim()]);
@@ -40,10 +51,18 @@ export function UploadRecipe() {
         setCurrentIngredient("");
     }
 
+    /**
+    * Removes the ingredient at the specified index from the ingredients list.
+    */
     const handleRemoveIngredient = (index) => {
         setIngredients(ingredients.filter((_, i) => i !== index))
     }
 
+    /**
+    * Submits the form thus creating the recipe (if valid).
+    * - Increments the user's recipe count after success
+    * - Displays an error message if validation fails or if an error occurs during submission
+    */
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
@@ -97,80 +116,16 @@ export function UploadRecipe() {
         });
     }
 
-    {/* <div class="uploadRecipe">
-            <form onSubmit={e => handleSubmit(e)}
-                onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}>
-
-                <h2>Upload Recipe</h2>
-
-                <div class="input name">
-                    <label> Name: </label>
-                    <InputField className="uploadRecipe" type="text"
-                        placeholder="pl.: Bolognai spagetti" value={name} onChange={setName} />
-
-                </div>
-
-                <div class="input category">
-                    <label>Category: </label>
-
-                    <InputDropdown name="category" value={category} list={RecipeCategory}
-                        onChange={e => setCategory(e.currentTarget.value as RecipeCategory)} />
-
-                </div>
-
-                <div class="input time">
-                    <label> Time Required: </label>
-
-                    <InputDropdown name="time" value={time} list={RecipeTime}
-                        onChange={(e) => setTime(e.currentTarget.value as RecipeTime)} />
-
-                </div>
-
-                <div>
-                    <label>
-                        Ingredients:
-                    </label>
-                    <div class="input ingredients">
-
-                        <InputField className="upload-recipe" type="text"
-                            placeholder="pl.: Sajt" value={currentIngredient}
-                            onChange={setCurrentIngredient} onEnter={handleAddIngredient} />
-
-                        <InputButton className="add-ingredient" onClick={handleAddIngredient} isIcon={true} textOrIconName="add" />
-
-                    </div>
-                    <ul>
-                        {ingredients.map((ingredient, index) => (
-                            <li key={index}>
-                                <div class="ingredient">
-                                    {ingredient}
-                                    <InputButton className="remove-ingredient" onClick={() => handleRemoveIngredient(index)} isSubmit={false} isIcon={true} textOrIconName="delete" />
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-
-                </div>
-
-                <InputButton className="submit-recipe" isSubmit={true} isIcon={false} textOrIconName="Submit Recipe" />
-
-                {isError && <p class="errorMessage" >{errorMessage}</p>}
-
-                <div class="line"></div>
-
-            </form>
-        </div> */}
-
     return (
         <UploadRecipeView
             name={name} setName={setName} category={category} setCategory={setCategory}
             time={time} setTime={setTime} ingredients={ingredients}
             currentIngredient={currentIngredient} setCurrentIngredient={setCurrentIngredient}
             isError={isError} errorMessage={errorMessage}
-            handleAddIngredient={handleAddIngredient}  handleRemoveIngredient={handleRemoveIngredient} 
+            handleAddIngredient={handleAddIngredient} handleRemoveIngredient={handleRemoveIngredient}
             handleSubmit={handleSubmit}
         />
 
-        
+
     );
 }

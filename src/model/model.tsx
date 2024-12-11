@@ -38,6 +38,12 @@ export type Recipe = {
     rating: [number, number, number, number, number]
 }
 
+/**
+ * Routes to a specified page by changing the URL and notifying the router.
+ * Reloads the page after routing.
+ * 
+ * @param page: The page to navigate to (e.g., "home", "account").
+ */
 export const routeToPage = (page: string) => {
     window.history.pushState(null, '', `/${page}`); // Change URL
     window.dispatchEvent(new Event('popstate'));   // Notify router

@@ -1,16 +1,14 @@
 import { useLocation } from 'preact-iso';
-import { useState } from 'preact/hooks';
 
 import "./header.less"
 
+/**
+ * The header component. The account and login text changes with the isLoggedIn parameter
+ * @param isLoggedIn: If the user is logged in or not.
+ * @returns 
+ */
 export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
 	const { url } = useLocation();
-
-	let [isHamburger, setIsHamburger] = useState(false);
-
-	const toggleMenu = () => {
-		setIsHamburger(!setIsHamburger);
-	}
 
 	return (
 		<header>
@@ -26,7 +24,6 @@ export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
 						<a href={ isLoggedIn ? "/account" : "/login"} class={url == '/account' && 'active'}>
 							{isLoggedIn ? "Account" : "Login"}
 						</a>
-
 					</div>
 				</div>
 			</nav>

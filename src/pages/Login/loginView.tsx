@@ -1,4 +1,3 @@
-import { Dispatch, StateUpdater } from "preact/hooks";
 import { InputButton } from "../../components/inputButton";
 import { InputField } from "../../components/inputField";
 
@@ -17,6 +16,27 @@ type LoginViewProps = {
     isError: boolean,
     errorMessage: string
 }
+
+/**
+ * This function renders the login or registration view, depending on the `isRegister` flag. 
+ * It includes fields for the email, username (if registering), and password, and handles the form submission
+ * for either login or registration based on the user's choice. It also toggles between login and registration 
+ * views and displays appropriate messages for success or errors.
+ * 
+ * @param isRegister: Flag to determine if the view should display the registration or login form
+ * @param setIsRegister: Function to toggle the `isRegister` flag
+ * @param email: The email input value
+ * @param setEmail: Function to update the email input value
+ * @param name: The username input value (only for registration)
+ * @param setName: Function to update the username input value
+ * @param password: The password input value
+ * @param setPassword: Function to update the password input value
+ * @param handleRegister: Function to handle the registration process
+ * @param handleLogin: Function to handle the login process
+ * @param isRegisterSuccess: Flag indicating successful registration
+ * @param isError: Flag indicating if an error occurred during login or registration
+ * @returns The UI components for the login or registration form
+ */
 
 export function LoginView({ isRegister, setIsRegister, email, setEmail, name, setName, password, setPassword,
     handleRegister, handleLogin, isRegisterSuccess, isError, errorMessage }: LoginViewProps) {
