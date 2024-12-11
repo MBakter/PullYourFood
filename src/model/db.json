@@ -5,7 +5,7 @@
       "username": "default",
       "password": "admin1234",
       "email": "admin",
-      "numOfRecipes": 3
+      "numOfRecipes": 5
     },
     {
       "id": "5ac3",
@@ -20,6 +20,20 @@
       "password": "admin1234",
       "email": "lutanfyah@gmail.com",
       "numOfRecipes": 2
+    },
+    {
+      "id": "35ca",
+      "username": "Teszt",
+      "password": "admin1234",
+      "email": "testing@g",
+      "numOfRecipes": 0
+    },
+    {
+      "id": "7487",
+      "username": "Teszt2",
+      "password": "admin1234",
+      "email": "teasztasd",
+      "numOfRecipes": 0
     }
   ],
   "recipes": [
@@ -147,6 +161,44 @@
         "csirke",
         "marharagú",
         "és piazza"
+      ],
+      "rating": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "66c8",
+      "name": "Fekete tea",
+      "creator": "default",
+      "category": "Beverage",
+      "time": "5-15min",
+      "ingredients": [
+        "Piros twinings",
+        "3dl forró víz",
+        "egy kis tej"
+      ],
+      "rating": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "6724",
+      "name": "Rizses hús",
+      "creator": "default",
+      "category": "Dish",
+      "time": "15-30min",
+      "ingredients": [
+        "rizs",
+        "rántott csirkemell",
+        "csalamádé"
       ],
       "rating": [
         0,

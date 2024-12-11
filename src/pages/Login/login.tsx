@@ -4,8 +4,7 @@ import { routeToPage, User } from "../../model/model";
 import { setUserInSessionStorage } from "../../model/storage";
 
 import "./login.less"
-import { InputField } from "../../components/inputField";
-import { InputButton } from "../../components/inputButton";
+import { LoginView } from "./loginView";
 
 const checkPasswordStrength = (password: string): boolean => {
     if (password.length >= 8 && /\d/.test(password))
@@ -88,39 +87,18 @@ export function Login() {
                 setIsRegisterSuccess(false);
                 setIsError(true);
                 setErrorMessage(error.message);
-            });;
+            });
     }
 
     return (
-        <div class="login">
-            <h1>{isRegister ? "Register" : "Login"}</h1>
-
-            <div class="input">
-                {isRegister &&
-                    <InputField className="login" type="text" placeholder="Username"
-                        value={name} onChange={setName} />
-                }
-
-                <InputField className="login" type="email" placeholder="Email"
-                    value={email} onChange={setEmail} />
-
-                <InputField className="login" type="password" placeholder="Password"
-                    value={password} onChange={setPassword}
-                    onEnter={isRegister ? handleRegister : handleLogin} />
-
-                <InputButton className="login-button" onClick={() => isRegister ? handleRegister() : handleLogin()} 
-                isIcon={false} textOrIconName={isRegister ? "Register" : "Login"} />
-
-            </div>
-
-            <p> {isRegister ? "Already have an account?" : "Have no account?"}
-                <InputButton className="login" onClick={() => setIsRegister(!isRegister)} isIcon={false} 
-                textOrIconName={isRegister ? "Login here" : "Register here"} />
-            </p>
-
-            {isRegisterSuccess && <p>SUCCESSFULLY Registered! Please login {name}</p>}
-            {isError && <p>{errorMessage}</p>}
-        </div>
+        <LoginView
+            isRegister={isRegister} setIsRegister={setIsRegister}
+            email={email} setEmail={setEmail}
+            name={name} setName={setName}
+            password={password} setPassword={setPassword}
+            handleRegister={handleRegister} handleLogin={handleLogin}
+            isRegisterSuccess={isRegisterSuccess} isError={isError} errorMessage={errorMessage}
+        />
 
     );
 }

@@ -1,7 +1,6 @@
 @import "./../../model/lib.less";
 
 .home {
-
     text-align: center;
 
     h1 {
@@ -55,7 +54,6 @@
             grid-column: span 1;
         }
 
-
         .category {
             display: flex;
             flex-direction: column;
@@ -83,7 +81,34 @@
                 transform: scale(1.05);
             }
         }
+
+        @media (max-width: 750px) {
+            grid-template-columns: 1fr; // One column layout
+            .category:nth-child(1) {
+                grid-column: span 1; // First item takes full width in single column
+            }
+
+            .category:nth-child(2),
+            .category:nth-child(3),
+            .category:nth-child(4),
+            .category:nth-child(5),
+            .category:nth-child(6),
+            .category:nth-child(7) {
+                grid-column: span 1; // All categories take full width in a column
+            }
+        }
     }
 
+    @media (max-width: 520px) {
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 370px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+    }
 
 }

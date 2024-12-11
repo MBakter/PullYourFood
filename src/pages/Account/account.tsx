@@ -5,6 +5,7 @@ import { AccountDetails } from "./accountDetails";
 import { useLocation } from "preact-iso";
 import { UploadedRecipes } from "../../components/uploadedRecipes";
 import { UploadRecipe } from "../../components/uploadRecipe";
+import { AccountView } from "./accountView";
 
 export function Account() {
 
@@ -72,22 +73,6 @@ export function Account() {
 	}, [url]);
 
 	return (
-		<div class="account-container">
-
-			{(profile.email !== "anonymous") &&
-				<AccountDetails profile={profile}
-					password={(username === "current" || username === JSON.parse(currentUserSession).username)
-						? JSON.parse(currentUserSession).password : null} />
-			}
-
-			{(JSON.parse(currentUserSession).username !== "anonymous" && (username === "current" || username === JSON.parse(currentUserSession).username)) &&
-				<UploadRecipe />
-			}
-			
-			{(profile.email !== "anonymous") &&
-				< UploadedRecipes username={username} />
-			}
-
-		</div>
+		<AccountView profile={profile} username={username} currentUserSession={currentUserSession}/>
 	);
 }

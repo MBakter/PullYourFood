@@ -15,7 +15,7 @@ export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
 	return (
 		<header>
 			<nav>
-				<div class={`topnav ${isHamburger ? 'responsive' : ''}`} id="topNav">
+				<div class="topnav" id="topNav">
 					<div class="inner-topnav">
 						<a href="/" class={url == '/' && 'active'}>
 							Home
@@ -27,9 +27,6 @@ export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
 							{isLoggedIn ? "Account" : "Login"}
 						</a>
 
-						<a href="javascript:void(0);" class="icon" onClick={toggleMenu}>
-							&#9776;
-						</a>
 					</div>
 				</div>
 			</nav>

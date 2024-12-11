@@ -5,6 +5,8 @@ import { checkRecipeAvaliability, increaseRecipeNumber, addRecipe } from "../mod
 import { RecipeCategory, RecipeTime, Recipe, routeToPage } from "../model/model";
 import { InputField } from "./inputField";
 import { InputButton } from "./inputButton";
+import { InputDropdown } from "./inputDropdown";
+import { UploadRecipeView } from "./uploadRecipeView";
 
 export function UploadRecipe() {
 
@@ -46,13 +48,13 @@ export function UploadRecipe() {
         e.preventDefault();
         const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
-        if(name.trim() == "" || name.length >= 40) {
+        if (name.trim() == "" || name.length >= 40) {
             setIsError(true);
             setErrorMessage("Incorrect name (must be something and smaller than 20 characters)")
             return;
         }
 
-        if(ingredients.length <= 1) {
+        if (ingredients.length <= 1) {
             setIsError(true);
             setErrorMessage("The recipe MUST NOT BE EMPTY! thanks...");
             return;
@@ -95,8 +97,7 @@ export function UploadRecipe() {
         });
     }
 
-    return (
-        <div class="uploadRecipe">
+    {/* <div class="uploadRecipe">
             <form onSubmit={e => handleSubmit(e)}
                 onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}>
 
@@ -112,30 +113,17 @@ export function UploadRecipe() {
                 <div class="input category">
                     <label>Category: </label>
 
-                    <select name="category" value={category}
-                        onChange={e => setCategory(e.currentTarget.value as RecipeCategory)}>
+                    <InputDropdown name="category" value={category} list={RecipeCategory}
+                        onChange={e => setCategory(e.currentTarget.value as RecipeCategory)} />
 
-                        {Object.values(RecipeCategory).map((category) => (
-                            <option key={category} value={category} >
-                                {category}
-                            </option>
-                        ))}
-
-                    </select>
                 </div>
 
                 <div class="input time">
                     <label> Time Required: </label>
 
-                    <select value={time}
-                        onChange={(e) => setTime(e.currentTarget.value as RecipeTime)}>
+                    <InputDropdown name="time" value={time} list={RecipeTime}
+                        onChange={(e) => setTime(e.currentTarget.value as RecipeTime)} />
 
-                        {Object.values(RecipeTime).map((time) => (
-                            <option key={time} value={time}>
-                                {time}
-                            </option>
-                        ))}
-                    </select>
                 </div>
 
                 <div>
@@ -145,8 +133,8 @@ export function UploadRecipe() {
                     <div class="input ingredients">
 
                         <InputField className="upload-recipe" type="text"
-                            placeholder="pl.: Sajt" value={currentIngredient} 
-                            onChange={setCurrentIngredient} onEnter={handleAddIngredient}/>
+                            placeholder="pl.: Sajt" value={currentIngredient}
+                            onChange={setCurrentIngredient} onEnter={handleAddIngredient} />
 
                         <InputButton className="add-ingredient" onClick={handleAddIngredient} isIcon={true} textOrIconName="add" />
 
@@ -171,6 +159,18 @@ export function UploadRecipe() {
                 <div class="line"></div>
 
             </form>
-        </div>
+        </div> */}
+
+    return (
+        <UploadRecipeView
+            name={name} setName={setName} category={category} setCategory={setCategory}
+            time={time} setTime={setTime} ingredients={ingredients}
+            currentIngredient={currentIngredient} setCurrentIngredient={setCurrentIngredient}
+            isError={isError} errorMessage={errorMessage}
+            handleAddIngredient={handleAddIngredient}  handleRemoveIngredient={handleRemoveIngredient} 
+            handleSubmit={handleSubmit}
+        />
+
+        
     );
 }

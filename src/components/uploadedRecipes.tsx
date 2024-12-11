@@ -1,8 +1,5 @@
 import { useEffect, useMemo, useState } from "preact/hooks";
 
-/* import { getRecipeByCreator } from "../../model/dao"; */
-
-
 import "./uploadedRecipes.less";
 import { getRecipeByCreator } from "../model/dao";
 import { Recipe } from "../model/model";
@@ -18,8 +15,6 @@ export function UploadedRecipes({ username }: { username: string }) {
     const fetchUploadedRecipes = async (name: string) : Promise<Recipe[]> => {
         try {
             const data = getRecipeByCreator(name);
-            console.log("Data: ")
-            console.log(data)
             return data; 
         } catch (error) {
             console.error("Error fetching recipes:", error);
@@ -29,11 +24,7 @@ export function UploadedRecipes({ username }: { username: string }) {
 
     useEffect(() => {
         fetchUploadedRecipes(username).then(data => setRecipes(data));
-        console.log("UPLOADEDBEN user: " + username);
     }, [username]); // Csak akkor fut ha username változik
-
-    console.log("Uploaded user: " + username);
-    console.log(recipes)
 
     return (
         <div class="recipes">

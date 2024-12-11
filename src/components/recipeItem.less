@@ -142,3 +142,25 @@
         }
     }
 }
+
+//---*--- !Ez Global stílus! ---*--- 
+
+.recipes ul {
+    list-style-type: none;
+}
+
+.recipe-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+
+    .recipe-container li {
+        display: flex;
+        justify-content: center;
+    }
+}
