@@ -54,25 +54,6 @@
             }
         }
 
-        button {
-            border: none;
-            padding: 0.75rem;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            background-color: @button-color;
-            color: @text-color-dark;
-            transition: all 0.6s;
-
-            &:hover {
-                color: @text-color-dark;
-                color: lighten(@text-color-dark, 40%);
-                border-color: fade(@text-color-dark, 50%);
-                background-color: lighten(@card-background, 40%);
-            }
-        }
-
         .ingredient {
             display: flex;
             flex-direction: row;
@@ -82,15 +63,6 @@
         }
         li {
             margin-left: 20px;
-        }
-
-        .remove {
-            font-size: 0.9rem;
-            padding: 8px;
-
-            &:hover {
-                background-color: @error-color;
-            }
         }
         
     }

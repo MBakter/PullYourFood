@@ -4,6 +4,7 @@ import "./uploadRecipe.less"
 import { checkRecipeAvaliability, increaseRecipeNumber, addRecipe } from "../model/dao";
 import { RecipeCategory, RecipeTime, Recipe, routeToPage } from "../model/model";
 import { InputField } from "./inputField";
+import { InputButton } from "./inputButton";
 
 export function UploadRecipe() {
 
@@ -143,15 +144,11 @@ export function UploadRecipe() {
                     </label>
                     <div class="input ingredients">
 
-                        <InputField className="uploadRecipe" type="text"
+                        <InputField className="upload-recipe" type="text"
                             placeholder="pl.: Sajt" value={currentIngredient} 
                             onChange={setCurrentIngredient} onEnter={handleAddIngredient}/>
 
-                        <button type="button" onClick={handleAddIngredient}>
-                            <span class="material-symbols-outlined">
-                                add
-                            </span>
-                        </button>
+                        <InputButton className="add-ingredient" onClick={handleAddIngredient} isIcon={true} textOrIconName="add" />
 
                     </div>
                     <ul>
@@ -159,13 +156,7 @@ export function UploadRecipe() {
                             <li key={index}>
                                 <div class="ingredient">
                                     {ingredient}
-                                    <button type="button" class="remove"
-                                        onClick={() => handleRemoveIngredient(index)}>
-
-                                        <span class="material-symbols-outlined">
-                                            delete
-                                        </span>
-                                    </button>
+                                    <InputButton className="remove-ingredient" onClick={() => handleRemoveIngredient(index)} isSubmit={false} isIcon={true} textOrIconName="delete" />
                                 </div>
                             </li>
                         ))}
@@ -173,7 +164,8 @@ export function UploadRecipe() {
 
                 </div>
 
-                <button type="submit">Submit Recipe</button>
+                <InputButton className="submit-recipe" isSubmit={true} isIcon={false} textOrIconName="Submit Recipe" />
+
                 {isError && <p class="errorMessage" >{errorMessage}</p>}
 
                 <div class="line"></div>

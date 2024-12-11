@@ -5,6 +5,7 @@ import { setUserInSessionStorage } from "../../model/storage";
 
 import "./login.less"
 import { InputField } from "../../components/inputField";
+import { InputButton } from "../../components/inputButton";
 
 const checkPasswordStrength = (password: string): boolean => {
     if (password.length >= 8 && /\d/.test(password))
@@ -107,18 +108,14 @@ export function Login() {
                     value={password} onChange={setPassword}
                     onEnter={isRegister ? handleRegister : handleLogin} />
 
-                <button class="login-button" onClick={
-                    () => isRegister ? handleRegister() : handleLogin()
-                }>
-                    {isRegister ? "Register" : "Login"}
-                </button>
+                <InputButton className="login-button" onClick={() => isRegister ? handleRegister() : handleLogin()} 
+                isIcon={false} textOrIconName={isRegister ? "Register" : "Login"} />
 
             </div>
 
             <p> {isRegister ? "Already have an account?" : "Have no account?"}
-                <button onClick={e => setIsRegister(!isRegister)}>
-                    {isRegister ? "Login here" : "Register here"}
-                </button>
+                <InputButton className="login" onClick={() => setIsRegister(!isRegister)} isIcon={false} 
+                textOrIconName={isRegister ? "Login here" : "Register here"} />
             </p>
 
             {isRegisterSuccess && <p>SUCCESSFULLY Registered! Please login {name}</p>}

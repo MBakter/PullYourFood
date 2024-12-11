@@ -3,6 +3,7 @@ import { Profile, routeToPage } from "../../model/model";
 import { setUserInSessionStorage } from "../../model/storage";
 
 import "./account.less"
+import { InputButton } from "../../components/inputButton";
 
 export function AccountDetails({ profile, password }: { profile: Profile, password: string }) {
 
@@ -21,7 +22,6 @@ export function AccountDetails({ profile, password }: { profile: Profile, passwo
                 </span>
                 <div class="name">
                     <h1 id="name" > {profile.username} </h1>
-
                 </div>
 
             </div>
@@ -46,9 +46,9 @@ export function AccountDetails({ profile, password }: { profile: Profile, passwo
                                     {password}
                                 </p>
                             }
-                            <button onClick={() => setShowPassword(!showPassword)} class={showPassword ? "shown" : "hidden"}>
-                                {showPassword ? "Hide" : "Show"}
-                            </button>
+                            <InputButton className={`account-details ${showPassword ? "shown" : "hidden"}`} onClick={() => setShowPassword(!showPassword)} 
+                            isIcon={false} textOrIconName={showPassword ? "Hide" : "Show"} />
+
                         </div>
 
                     </div>
@@ -67,7 +67,8 @@ export function AccountDetails({ profile, password }: { profile: Profile, passwo
             {password != null &&
                 <div>
                     <div class="logout">
-                        <button onClick={() => handleLogout()}>Logout</button>
+                        <InputButton className="logout" onClick={handleLogout}
+                            isIcon={false} textOrIconName="Logout" />
                     </div>
                     <div class="line"></div>
                 </div>

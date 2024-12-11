@@ -79,61 +79,10 @@
             }
 
         }
-
-        button {
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            background-color: @button-color;
-            color: @text-color-dark;
-            transition: all 0.6s;
-
-            &.shown {
-                animation: slide-in ease-in 0.5s;
-                @keyframes slide-in {
-                    0% { transform: translateX(-100px); }
-                    100% { transform: 0; }
-                }
-            }
-            &.hidden {
-                animation: slide-out ease-in 0.5s;
-                @keyframes slide-out {
-                    0% { transform: translateX(100px); }
-                    100% { transform: 0; }
-                }
-            }
-
-            &:hover {
-                color: @text-color-dark;
-                color: lighten(@text-color-dark, 40%);
-                border-color: fade(@text-color-dark, 50%);
-                background-color: lighten(@background-color-dark, 40%);
-            }
-        }
     }
 
     #recipeNum {
         font-size: 1.1rem;
-    }
-
-
-    .logout button {
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        font-size: 1rem;
-        cursor: pointer;
-        border: none;
-        background-color: @button-color;
-        color: @text-color-dark;
-        transition: all 0.5s ease;
-
-        &:hover {
-            background-color: @error-color;
-            color: lighten(@text-color-dark, 10%);
-        }
     }
 
     @media (max-width: 768px) {
@@ -145,10 +94,6 @@
 
         p {
             font-size: 1rem;
-        }
-
-        button {
-            font-size: 0.875rem;
         }
     }
 }

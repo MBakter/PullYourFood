@@ -1,0 +1,107 @@
+@import "./../model/lib.less";
+
+.inputButton {
+    border: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+
+
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: @button-color;
+    color: @text-color-dark;
+
+    &:hover {
+        color: @text-color-dark;
+        color: lighten(@text-color-dark, 40%);
+        border-color: fade(@text-color-dark, 50%);
+        background-color: lighten(@input-color, 40%);
+    }
+}
+
+@media (max-width: 768px) {
+    button {
+        font-size: 0.875rem;
+    }
+}
+
+.inputButton_login {
+    margin-left: 20px;
+}
+
+.inputButton_login-button {
+    padding: 1rem 2rem;
+    margin-right: 1rem;
+
+    &:hover {
+        background-color: lighten(@card-background, 40%);
+    }
+}
+
+.inputButton_logout {
+    margin-left: 20px;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.5s ease;
+
+    &:hover {
+        background-color: @error-color;
+        color: lighten(@text-color-dark, 10%);
+    }
+}
+
+.inputButton_account-details {
+    padding: 0.5rem 1rem;
+    transition: all 0.3s;
+
+    &.shown {
+        animation: slide-in ease-in 0.5s;
+
+        @keyframes slide-in {
+            0% {
+                transform: translateX(-100px);
+            }
+
+            100% {
+                transform: 0;
+            }
+        }
+    }
+
+    &.hidden {
+        animation: slide-out ease-in 0.5s;
+
+        @keyframes slide-out {
+            0% {
+                transform: translateX(100px);
+            }
+
+            100% {
+                transform: 0;
+            }
+        }
+    }
+}
+
+.inputButton_add-ingredient {
+    &:hover {
+        background-color: lighten(@card-background, 40%);
+    }
+}
+
+.inputButton_submit-recipe {
+    font-size: 1.5rem;
+
+    &:hover {
+        background-color: lighten(@card-background, 40%);
+    }
+}
+
+.inputButton_remove-ingredient {
+    font-size: 1rem;
+    padding: 8px;
+
+    &:hover {
+        background-color: @error-color;
+    }
+}
